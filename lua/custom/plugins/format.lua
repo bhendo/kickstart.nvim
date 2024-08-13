@@ -7,6 +7,7 @@ return {
     conform.setup {
       formatters_by_ft = {
         python = { 'isort', 'black' },
+        json = { 'jq' }
       },
       format_after_save = {
         lsp_format = "fallback"

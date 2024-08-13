@@ -528,6 +528,7 @@ require('lazy').setup({
         'flake8', -- Used to lint Python code
         'black',
         'isort',
+        'jq'
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
