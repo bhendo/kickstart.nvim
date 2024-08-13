@@ -526,6 +526,7 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'flake8', -- Used to lint Python code
+        'markdownlint',
         'black',
         'isort',
         'jq'
