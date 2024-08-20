@@ -10,5 +10,5 @@ return {
       unpack(keys),
     }
   end,
-  config = {},
+  opts = {},
 }
