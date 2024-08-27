@@ -272,16 +272,6 @@ require('lazy').setup({
             require('telescope.themes').get_dropdown(),
           },
         },
-        defaults = {
-          file_ignore_patterns = {
-            'node_modules',
-            '__pycache__',
-            '.pytest_cache',
-            '%.pyc$',
-            '.direnv',
-            '.git',
-          },
-        },
       }
 
       -- Enable Telescope extensions if they are installed
@@ -495,7 +485,20 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         gopls = {},
-        pyright = {},
+        pyright = {
+          settings = {
+            pyright = {
+              -- Using Ruff's import organizer
+              disableOrganizeImports = true,
+            },
+            python = {
+              analysis = {
+                -- Ignore all files for analysis to exclusively use Ruff for linting
+                ignore = { '*' },
+              },
+            },
+          },
+        },
         rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -520,6 +523,7 @@ require('lazy').setup({
             },
           },
         },
+        ruff = {},
       }
 
       -- Ensure the servers and tools above are installed
