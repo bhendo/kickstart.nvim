@@ -234,6 +234,7 @@ require('lazy').setup({
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      'Marskey/telescope-sg',
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -524,6 +525,13 @@ require('lazy').setup({
           },
         },
         ruff = {},
+        ast_grep = {
+          {
+            cmd = { 'ast-grep', 'lsp' },
+            single_file_support = false,
+            root_dir = require('lspconfig').util.root_pattern 'sgconfig.yml',
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -543,6 +551,7 @@ require('lazy').setup({
         'markdownlint',
         'mypy',
         'jq',
+        'ast-grep',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
