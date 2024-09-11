@@ -784,15 +784,6 @@ require('lazy').setup({
       }
     end,
   },
-  {
-    'maxmx03/solarized.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.o.background = 'dark' -- or 'light'
-      vim.cmd.colorscheme 'solarized'
-    end,
-  },
   --  { -- You can easily change to a different colorscheme.
   --    -- Change the name of the colorscheme plugin below, and then
   --    -- change the command in the config to whatever the name of that colorscheme is.
