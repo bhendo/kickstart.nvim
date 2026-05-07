@@ -1,61 +1,39 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
+-- Custom plugins / config loader.
 --
--- See the kickstart.nvim README for more information
-vim.g.have_nerd_font = true
-vim.o.relativenumber = true
+-- Each file is a plain Lua script that calls `vim.pack.add` and then sets the
+-- plugin up — same pattern as upstream's `lua/kickstart/plugins/*.lua`.
+-- Order matters here: kickstart enables come first (they install dap, mason
+-- extras, etc.) so later customizations can build on them.
 
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- Kickstart optional plugins (vim.pack-based)
+require 'kickstart.plugins.debug'
+require 'kickstart.plugins.indent_line'
+require 'kickstart.plugins.lint'
+require 'kickstart.plugins.autopairs'
+require 'kickstart.plugins.neo-tree'
+require 'kickstart.plugins.gitsigns'
 
-local function copy_path(path_type)
-  local path_to_copy
-  local msg_suffix
+-- LSP / Mason extras (depend on init.lua's mason + mason-lspconfig)
+require 'custom.plugins.lsp'
+require 'custom.plugins.mason-extras'
 
-  if path_type == 'full' then
-    path_to_copy = vim.fn.expand '%:p'
-    msg_suffix = 'full path'
-  elseif path_type == 'relative' then
-    path_to_copy = vim.fn.expand '%:.'
-    msg_suffix = 'relative path'
-  elseif path_type == 'filename' then
-    path_to_copy = vim.fn.expand '%:t'
-    msg_suffix = 'filename'
-  else
-    print 'Invalid path type specified for copy_path'
-    return
-  end
+-- Formatting / completion overrides
+require 'custom.plugins.conform'
 
-  vim.fn.setreg('+', path_to_copy)
-  print('Copied ' .. msg_suffix .. ' to clipboard')
-end
-vim.keymap.set('n', '<leader>cp', function()
-  copy_path 'full'
-end, { desc = 'Copy full file path' })
-vim.keymap.set('n', '<leader>cr', function()
-  copy_path 'relative'
-end, { desc = 'Copy relative file path' })
-vim.keymap.set('n', '<leader>cf', function()
-  copy_path 'filename'
-end, { desc = 'Copy filename' })
+-- Editor
+require 'custom.plugins.colorscheme'
+require 'custom.plugins.markdown'
+require 'custom.plugins.marks'
+require 'custom.plugins.harpoon'
+require 'custom.plugins.lspsaga'
+require 'custom.plugins.trouble'
+require 'custom.plugins.ufo'
+require 'custom.plugins.codediff'
+require 'custom.plugins.sarif'
 
-require('guess-indent').setup {}
+-- Language-specific
+require 'custom.plugins.rustaceanvim'
+require 'custom.plugins.dap-projects'
 
--- local lspconfig = require 'lspconfig'
--- lspconfig.ruby_lsp.setup {
---   init_options = {
---     formatter = 'standard',
---     linters = { 'standard' },
---     addonSettings = {
---       ['Ruby LSP Rails}'] = {
---         enablePendingMigrtationsPrompt = false,
---       },
---     },
---   },
--- }
-
----@module 'lazy'
----@type LazySpec
-return {}
+-- User keymaps
+require 'custom.plugins.keymaps'

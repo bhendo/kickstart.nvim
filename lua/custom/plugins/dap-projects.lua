@@ -1,10 +1,5 @@
-return {
-  'ldelossa/nvim-dap-projects',
-  dependencies = {
-    'mfussenegger/nvim-dap',
-  },
-  config = function()
-    local dap_projects = require 'nvim-dap-projects'
-    dap_projects.search_project_config()
-  end
-}
+-- nvim-dap is loaded via kickstart.plugins.debug, which our custom init.lua
+-- requires before this file.
+
+vim.pack.add { 'https://github.com/ldelossa/nvim-dap-projects' }
+require('nvim-dap-projects').search_project_config()

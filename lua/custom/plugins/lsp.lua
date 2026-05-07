@@ -1,5 +1,7 @@
--- Pyright settings merge via vim.lsp.config deep-merge; mason-lspconfig's
--- automatic_enable fires vim.lsp.enable() for each ensure_installed server.
+-- LSP servers we want auto-installed and enabled. mason and mason-lspconfig
+-- are added via vim.pack in init.lua but mason-lspconfig is not setup there,
+-- so we do that here.
+
 vim.lsp.config('pyright', {
   settings = {
     pyright = {
@@ -15,10 +17,7 @@ vim.lsp.config('pyright', {
   },
 })
 
-return {
-  'mason-org/mason-lspconfig.nvim',
-  opts = {
-    ensure_installed = { 'clangd', 'gopls', 'pyright', 'ts_ls', 'ruff' },
-    automatic_enable = true,
-  },
+require('mason-lspconfig').setup {
+  ensure_installed = { 'clangd', 'gopls', 'pyright', 'ts_ls', 'ruff' },
+  automatic_enable = true,
 }
