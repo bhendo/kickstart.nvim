@@ -5,6 +5,10 @@
 -- Order matters here: kickstart enables come first (they install dap, mason
 -- extras, etc.) so later customizations can build on them.
 
+-- Environment / filetype tweaks (no plugin deps; safe to load first)
+require 'custom.plugins.providers'
+require 'custom.plugins.filetypes'
+
 -- Kickstart optional plugins (vim.pack-based)
 require 'kickstart.plugins.debug'
 require 'kickstart.plugins.indent_line'
