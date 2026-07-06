@@ -1,5 +1,6 @@
--- nvim-treesitter is added by init.lua; nvim-web-devicons is also added there
--- (conditional on have_nerd_font, which we set to true).
+-- nvim-treesitter is added by init.lua. Icon support comes from mini.icons
+-- (also set up in init.lua), which mocks nvim-web-devicons for plugins like
+-- this one that require it (conditional on have_nerd_font, which we set to true).
 
 vim.pack.add { 'https://github.com/nvimdev/lspsaga.nvim' }
 
